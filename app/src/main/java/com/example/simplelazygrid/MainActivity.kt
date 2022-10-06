@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -31,8 +32,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             SimpleLazyGridTheme {
                 // A surface container using the 'background' color from the theme
+                val state= rememberLazyListState(
+                    initialFirstVisibleItemIndex = 99
+                )
 
-                LazyVerticalGrid(cells =GridCells.Fixed(3) , content ={
+                LazyVerticalGrid(cells =GridCells.Fixed(3) ,
+                    state=state,
+                    content ={
                     items(100){ i->
                         Box(modifier = Modifier
                             .padding(8.dp)
